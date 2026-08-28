@@ -61,6 +61,8 @@ dlink,dwr-116-a1|\
 head-weblink,hdrm200|\
 ohyeah,oy-0001|\
 planex,mzk-ex300np|\
+zbtlink,zbt-we826-16m|\
+zbtlink,zbt-we826-32m|\
 zbtlink,zbt-wr8305rt|\
 zyxel,keenetic-lite-iii-a|\
 zyxel,keenetic-omni|\
@@ -263,6 +265,11 @@ wavlink,wl-wn535k1)
 wavlink,wl-wn579x3)
 	ucidef_set_led_switch "lan" "lan" "blue:lan" "switch0" "0x20"
 	ucidef_set_led_switch "wan" "wan" "blue:wan" "switch0" "0x10"
+	;;
+xiaomi,miwifi-mini)
+	ucidef_set_led_switch "lan1" "lan1" "green:lan1" "switch0" "0x02"
+	ucidef_set_led_switch "lan2" "lan2" "green:lan2" "switch0" "0x01"
+	ucidef_set_led_switch "wan" "wan" "green:wan" "switch0" "0x10"
 	;;
 zbtlink,zbt-ape522ii)
 	ucidef_set_led_netdev "wlan2g4" "wlan1-link" "green:wlan2g4" "wlan1"
