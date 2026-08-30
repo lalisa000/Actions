@@ -43,7 +43,7 @@ jobs:
         id: set-matrix
         run: |
           DEVICES="${{ inputs.device || github.event.inputs.device }}"
-          JSON=$(echo "$DEVICES" | jq -R -s -c 'split(" ") | map(select(length > 0))')
+          JSON=$(echo "$DEVICES" | tr '\n' ' ' | jq -R -s -c 'split(" ") | map(select(length > 0))')
           echo "devices=$JSON" >> $GITHUB_OUTPUT
 
   build:
@@ -58,11 +58,6 @@ jobs:
         device: ${{ fromJson(needs.prepare.outputs.devices) }}
 
     steps:
-
-      - name: Check device
-        run: |
-          echo ">${{ matrix.device }}<"
-
       - name: Checkout
         uses: actions/checkout@main
         
