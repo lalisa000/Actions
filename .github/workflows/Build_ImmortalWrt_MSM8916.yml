@@ -5,25 +5,6 @@ on:
   repository_dispatch:
   workflow_dispatch:
     inputs:
-      # device:
-      #   description: "选择编译型号"
-      #   required: true
-      #   default: "ufi103s"
-      #   type: choice
-      #   options:
-      #     - ufi001c
-      #     - ufi001b
-      #     - ufi003
-      #     - ufi103s
-      #     - uz801
-      #     - jz02v10
-      #     - mf32
-      #     - mf601
-      #     - qrzl903
-      #     - sp970v10
-      #     - sp970v11
-      #     - w001
-      #     - wf2
       device:
         description: "选择编译型号"
         required: true
@@ -52,7 +33,19 @@ env:
 
 
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      devices: ${{ steps.set-matrix.outputs.devices }}
+    steps:
+      - name: Split devices
+        id: set-matrix
+        run: |
+          DEVICES="${{ inputs.device || github.event.inputs.device }}"
+          JSON=$(echo "$DEVICES" | jq -R -s -c 'split(" ") | map(select(length > 0))')
+          echo "devices=$JSON" >> $GITHUB_OUTPUT
   build:
+    needs: prepare
     runs-on: ubuntu-latest
     permissions:
        contents: write
@@ -60,8 +53,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        device:
-          - ${{ github.event.inputs.device }}
+        device: ${{ fromJson(needs.prepare.outputs.devices) }}
     steps:
 
     - name: Checkout
