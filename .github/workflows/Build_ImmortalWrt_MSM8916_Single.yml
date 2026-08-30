@@ -43,7 +43,7 @@ env:
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
-  TZ: Asia/Shanghai
+  TZ: Asia/Hongkong
 
 
 jobs:
@@ -296,8 +296,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$(date +%Y%m%d)-V${{ github.run_number }}" >> $GITHUB_OUTPUT
-        echo "release_tag=MSM8916-$(date +%Y.%m.%d)-V${{ github.run_number }}" >> $GITHUB_OUTPUT
+        echo "release_tag=$(date +%Y%m%d-%H%M%S)" >> $GITHUB_OUTPUT
         echo "release_name=$(date +%Y%m%d %H:%M:%S)" >> $GITHUB_OUTPUT
         touch release.txt
         if [ "${UPLOAD_GOFILE}" = "true" ] && [ -n "${{ steps.gofile.outputs.url }}" ]; then
