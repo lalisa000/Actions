@@ -8,36 +8,41 @@ on:
       device:
         description: "选择编译型号"
         required: true
-        default: "ufi103s"
-        type: choice
-        options:
-          - jz02v10
-          - ufi001c
-          - ufi001b
-          - ufi103s
-          - qrzl903
-          - w001
-          - ufi003
-          - uz801
-          - mf32
-          - mf601
-          - wf2
-          - sp970v11
-          - sp970v10
-      ssh:
-        description: "SSH (调试)"
-        required: false
-        default: false
-        type: boolean
-      log_switch:
-        description: "单线程编译 (默认四线程)"
-        required: false
-        default: false
-        type: boolean
+        default: "ufi001c ufi001b ufi003 ufi103s uz801 jz02v10 mf32 mf601 qrzl903 sp970v10 sp970v11 w001 wf2"
+        type: string
+      # device:
+      #   description: "选择编译型号"
+      #   required: true
+      #   default: "ufi103s"
+      #   type: choice
+      #   options:
+      #     - ufi001c
+      #     - ufi001b
+      #     - ufi003
+      #     - ufi103s
+      #     - uz801
+      #     - jz02v10
+      #     - mf32
+      #     - mf601
+      #     - qrzl903
+      #     - sp970v10
+      #     - sp970v11
+      #     - w001
+      #     - wf2
+      # ssh:
+      #   description: "SSH调试"
+      #   required: false
+      #   default: false
+      #   type: boolean
+      # log_switch:
+      #   description: "单线程编译 (默认四线程)"
+      #   required: false
+      #   default: false
+      #   type: boolean
 
 
 env:
-  ALL_DEVICES: "jz02v10 ufi001c ufi001b ufi103s qrzl903 w001 ufi003 uz801 mf32 mf601 wf2 sp970v11 sp970v10"
+  ALL_DEVICES: "ufi001c ufi001b ufi003 ufi103s uz801 jz02v10 mf32 mf601 qrzl903 sp970v10 sp970v11 w001 wf2"
   REPO_URL: https://github.com/lalisa000/immortalwrt
   REPO_BRANCH: master
   UPLOAD_BIN_DIR: false
