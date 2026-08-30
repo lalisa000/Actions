@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       device:
-        description: "选择编译型号"
+        description: "编译型号"
         required: true
         default: "ufi103s"
         type: choice
