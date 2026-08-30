@@ -296,7 +296,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$(date +%Y%m%d-%H%M%S)" >> $GITHUB_OUTPUT
+        echo "release_tag=$(date +%Y%m%d)" >> $GITHUB_OUTPUT
         echo "release_name=$(date +%Y%m%d %H:%M:%S)" >> $GITHUB_OUTPUT
         touch release.txt
         if [ "${UPLOAD_GOFILE}" = "true" ] && [ -n "${{ steps.gofile.outputs.url }}" ]; then
