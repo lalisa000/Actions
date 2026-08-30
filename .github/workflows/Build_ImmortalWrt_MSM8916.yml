@@ -27,7 +27,7 @@ on:
       device:
         description: "选择编译型号"
         required: true
-        default: "ufi001c ufi001b ufi003 ufi103s uz801 jz02v10 mf32 mf601 qrzl903 sp970v10 sp970v11 w001 wf2"
+        default: "ufi003 ufi103s sp970v11"
         type: string
       ssh:
         description: "SSH调试"
