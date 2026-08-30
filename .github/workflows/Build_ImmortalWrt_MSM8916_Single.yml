@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       device:
-        description: "编译型号"
+        description: "选择编译型号"
         required: true
         default: "ufi103s"
         type: choice
@@ -296,7 +296,8 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$(date +%Y%m%d)-V${{ github.run_number }" >> $GITHUB_OUTPUT
+        echo "release_tag=$(date +%Y%m%d)-V${{ github.run_number }}" >> $GITHUB_OUTPUT
+        echo "release_tag=MSM8916-$(date +%Y.%m.%d)-V${{ github.run_number }}" >> $GITHUB_OUTPUT
         echo "release_name=$(date +%Y%m%d %H:%M:%S)" >> $GITHUB_OUTPUT
         touch release.txt
         if [ "${UPLOAD_GOFILE}" = "true" ] && [ -n "${{ steps.gofile.outputs.url }}" ]; then
