@@ -303,12 +303,10 @@ jobs:
           fi
           echo "" >> release.txt
           {
-          echo "IMMORTALWRT FOR MSM8916" >> release.txt
-          for x in ${{ matrix.device }}; do
-            echo "$x" >> release.txt
-          done
+            echo "IMMORTALWRT FOR MSM8916"
             echo ""
-            echo "编译时间: $(date +"%Y%m%d %H:%M:%S")" >> release.txt
+            echo "编译时间: $(date +"%Y%m%d %H:%M:%S")"
+            echo "設備型號: ${{ github.event.inputs.device }}"
             echo "内核版本: $(grep -h "kmod-usb2" ${{ env.FIRMWARE }}/*.manifest 2>/dev/null | awk -F' - ' '{print $2}' | grep -oP '[5-6]\.[0-9]+\.[0-9]+' | head -1 || echo '未知')"
             echo ""
             echo "管理地址: 192.168.1.1"
